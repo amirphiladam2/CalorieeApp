@@ -1,50 +1,65 @@
-# Welcome to your Expo app 👋
+# CalorieeApp (Sporty) 🏃‍♂️🥗
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+A modern, feature-rich calorie tracking and fitness application built with React Native (Expo) and Supabase.
 
-## Get started
+## 🌟 Features
 
-1. Install dependencies
+-   **Meal Tracking**: Log breakfast, lunch, dinner, and snacks with ease.
+-   **Macro Monitoring**: Visualize your daily protein, carbs, and fat intake.
+-   **Goal Setting**: Set personalized daily calorie and weight goals.
+-   **Progress Visualization**: Circular progress indicators for daily goals and streaks.
+-   **Profile Management**: Update your details, profile picture, and view your stats.
+-   **Secure Authentication**: Powered by Supabase Auth.
 
-   ```bash
-   npm install
-   ```
+## 🛠️ Tech Stack
 
-2. Start the app
+-   **Frontend**: React Native, Expo, Expo Router
+-   **Styling**: NativeWind (Tailwind CSS)
+-   **Backend/Database**: Supabase
+-   **State Management**: Redux Toolkit
+-   **Forms**: React Hook Form, Zod
 
-   ```bash
-   npx expo start
-   ```
+## 🚀 Getting Started
 
-In the output, you'll find options to open the app in a
+### Prerequisites
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+-   Node.js (v18+ recommended)
+-   npm or yarn
+-   Expo Go app on your phone (or a simulator)
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+### Installation
 
-## Get a fresh project
+1.  Clone the repository:
+    ```bash
+    git clone https://github.com/amirphiladam2/CalorieeApp.git
+    cd CalorieeApp
+    ```
 
-When you're ready, run:
+2.  Install dependencies:
+    ```bash
+    npm install
+    ```
 
-```bash
-npm run reset-project
-```
+3.  Set up environment variables:
+    Create a `.env` file in the root directory and add your Supabase credentials:
+    ```env
+    EXPO_PUBLIC_SUPABASE_URL=your_supabase_url
+    EXPO_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+    ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+4.  Start the app:
+    ```bash
+    npx expo start
+    ```
 
-## Learn more
+## 📱 Screenshots
 
-To learn more about developing your project with Expo, look at the following resources:
+*(Add screenshots of your app here)*
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+## 🤝 Contributing
 
-## Join the community
+Contributions are welcome! Please feel free to submit a Pull Request.
 
-Join our community of developers creating universal apps.
+## 📄 License
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+This project is licensed under the MIT License.
