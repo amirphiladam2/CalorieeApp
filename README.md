@@ -1,4 +1,4 @@
-# CalorieeApp (Sporty) 🏃‍♂️🥗
+# CalorieeApp (Sporty) 
 
 A modern, feature-rich calorie tracking and fitness application built with React Native (Expo) and Supabase.
 
@@ -53,18 +53,23 @@ A modern, feature-rich calorie tracking and fitness application built with React
     ```
 
 ## 📱 Screenshots
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/580ed96b-f800-4dd3-9f2d-eea18c8a3cd3" width="250" />
+  <img src="https://github.com/user-attachments/assets/47182cf6-00e6-44f8-b539-0264b35edf54" width="250" />
+</div>
 
-*(Add screenshots of your app here)*
-<img width="720" height="1600" alt="image" src="https://github.com/user-attachments/assets/580ed96b-f800-4dd3-9f2d-eea18c8a3cd3" />
-<img width="720" height="1600" alt="image" src="https://github.com/user-attachments/assets/47182cf6-00e6-44f8-b539-0264b35edf54" />
-<img width="720" height="1600" alt="image" src="https://github.com/user-attachments/assets/4e9b1016-a3be-4322-83b3-3c422edd9420" />
-<img width="720" height="1600" alt="image" src="https://github.com/user-attachments/assets/19455ada-7ef7-4040-b01b-d69deb274fad" />
-<img width="720" height="1600" alt="image" src="https://github.com/user-attachments/assets/0df372b3-626b-4bdf-82fa-ce5a284961a7" />
+<br/>
 
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/4e9b1016-a3be-4322-83b3-3c422edd9420" width="250" />
+  <img src="https://github.com/user-attachments/assets/19455ada-7ef7-4040-b01b-d69deb274fad" width="250" />
+</div>
 
+<br/>
 
-
-
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/0df372b3-626b-4bdf-82fa-ce5a284961a7" width="250" />
+</div>
 
 
 ## 🤝 Contributing
