@@ -1,4 +1,4 @@
-# CalorieeApp (Sporty) 
+# CalorieeApp
 
 A modern, feature-rich calorie tracking and fitness application built with React Native (Expo) and Supabase.
 
