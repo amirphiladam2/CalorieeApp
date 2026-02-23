@@ -61,7 +61,7 @@ A modern, feature-rich calorie tracking and fitness application built with React
 <br/>
 
 <div align="center">
-  <img width="720" height="1600" alt="image" src="https://github.com/user-attachments/assets/4c28b5d8-158d-44ab-869e-cee80488bd98" />
+  <img width="250" alt="image" src="https://github.com/user-attachments/assets/4c28b5d8-158d-44ab-869e-cee80488bd98" />
   <img src="https://github.com/user-attachments/assets/4e9b1016-a3be-4322-83b3-3c422edd9420" width="250" />
 </div>
 
