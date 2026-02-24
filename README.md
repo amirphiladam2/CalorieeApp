@@ -2,7 +2,7 @@
 
 A modern, feature-rich calorie tracking and fitness application built with React Native (Expo) and Supabase.
 
-## 🌟 Features
+##  Features
 
 -   **Meal Tracking**: Log breakfast, lunch, dinner, and snacks with ease.
 -   **Macro Monitoring**: Visualize your daily protein, carbs, and fat intake.
@@ -11,7 +11,7 @@ A modern, feature-rich calorie tracking and fitness application built with React
 -   **Profile Management**: Update your details, profile picture, and view your stats.
 -   **Secure Authentication**: Powered by Supabase Auth.
 
-## 🛠️ Tech Stack
+##  Tech Stack
 
 -   **Frontend**: React Native, Expo, Expo Router
 -   **Styling**: NativeWind (Tailwind CSS)
@@ -19,7 +19,7 @@ A modern, feature-rich calorie tracking and fitness application built with React
 -   **State Management**: Redux Toolkit
 -   **Forms**: React Hook Form, Zod
 
-## 🚀 Getting Started
+##  Getting Started
 
 ### Prerequisites
 
@@ -52,7 +52,7 @@ A modern, feature-rich calorie tracking and fitness application built with React
     npx expo start
     ```
 
-## 📱 Screenshots
+##  Screenshots
 <div align="center">
   <img src="https://github.com/user-attachments/assets/580ed96b-f800-4dd3-9f2d-eea18c8a3cd3" width="250" />
   <img src="https://github.com/user-attachments/assets/47182cf6-00e6-44f8-b539-0264b35edf54" width="250" />
