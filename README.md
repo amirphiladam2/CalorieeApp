@@ -56,7 +56,6 @@ A modern, feature-rich calorie tracking and fitness application built with React
 | Home | AI Recipe | Meals | Macros | Settings |
 |:----:|:---------:|:-----:|:------:|:--------:|
 | <img src="https://github.com/user-attachments/assets/946cc818-71da-47c3-baa8-067630dbd3a6" width="220"/> | <img src="https://github.com/user-attachments/assets/3860aba8-7305-4cdc-8d9a-f7a376b5dc9e" width="220"/> | <img src="https://github.com/user-attachments/assets/e7571905-c3a4-4004-93a8-2f2442c530d2" width="220"/> | <img src="https://github.com/user-attachments/assets/dd6952cc-70b7-429d-8c12-fa79721cf7df" width="220"/> | _Add Settings Image_ |
-
 ## 🤝 Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
