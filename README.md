@@ -53,14 +53,9 @@ A modern, feature-rich calorie tracking and fitness application built with React
     ```
 
 ## 📱 Screenshots
-
 | Home | AI Recipe | Meals | Macros | Settings |
 |:----:|:---------:|:-----:|:------:|:--------:|
-|<img width="1840" height="3600" alt="IM5-portrait" src="https://github.com/user-attachments/assets/946cc818-71da-47c3-baa8-067630dbd3a6" />
-|  | <img width="1480" height="2800" alt="IM7-portrait" src="https://github.com/user-attachments/assets/e7571905-c3a4-4004-93a8-2f2442c530d2" />
- | <img width="1480" height="2800" alt="IM6-portrait" src="https://github.com/user-attachments/assets/dd6952cc-70b7-429d-8c12-fa79721cf7df" />
-|<img width="1480" height="2800" alt="IM1-portrait" src="https://github.com/user-attachments/assets/3860aba8-7305-4cdc-8d9a-f7a376b5dc9e" />
-|
+| <img src="https://github.com/user-attachments/assets/946cc818-71da-47c3-baa8-067630dbd3a6" width="220"/> | <img src="https://github.com/user-attachments/assets/3860aba8-7305-4cdc-8d9a-f7a376b5dc9e" width="220"/> | <img src="https://github.com/user-attachments/assets/e7571905-c3a4-4004-93a8-2f2442c530d2" width="220"/> | <img src="https://github.com/user-attachments/assets/dd6952cc-70b7-429d-8c12-fa79721cf7df" width="220"/> | _Add Settings Image_ |
 
 ## 🤝 Contributing
 
