@@ -56,9 +56,11 @@ A modern, feature-rich calorie tracking and fitness application built with React
 
 | Home Screen | Profile Screen | Settings |
 |:-----------:|:--------------:|:--------:|
-| <img src="https://github.com/user-attachments/assets/580ed96b-f800-4dd3-9f2d-eea18c8a3cd3" width="300" /> | <img src="https://github.com/user-attachments/assets/47182cf6-00e6-44f8-b539-0264b35edf54" width="300" /> | <img src="https://github.com/user-attachments/assets/4c28b5d8-158d-44ab-869e-cee80488bd98" width="300" /> |
+| <img width="1840" height="3600" alt="IM5-portrait" src="https://github.com/user-attachments/assets/b81ad5cd-0674-4aa4-858a-e0c53eac1616" />
+ |  | <img src="https://github.com/user-attachments/assets/4c28b5d8-158d-44ab-869e-cee80488bd98" width="300" /> |
 | **Meal Log** | **Goals** | **Privacy** |
-| <img src="https://github.com/user-attachments/assets/4e9b1016-a3be-4322-83b3-3c422edd9420" width="300" /> | <img src="https://github.com/user-attachments/assets/19455ada-7ef7-4040-b01b-d69deb274fad" width="300" /> | <img src="https://github.com/user-attachments/assets/0df372b3-626b-4bdf-82fa-ce5a284961a7" width="300" /> |
+| | <img src="https://github.com/user-attachments/assets/19455ada-7ef7-4040-b01b-d69deb274fad" width="300" /> | <img width="1480" height="2800" alt="IM6-portrait" src="https://github.com/user-attachments/assets/532114e1-e0b0-4c18-91bf-fee57f010cb7" />
+|
 
 
 ## 🤝 Contributing
