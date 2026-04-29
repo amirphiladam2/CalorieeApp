@@ -1,78 +1,111 @@
+import QuickActionCard from "@/components/HomeScreen/QuickActionCard";
+import RecipeGeneratorCard from "@/components/HomeScreen/RecipeGeneratorCard";
 import { useProfile } from "@/hooks/useProfile";
+import { useFocusEffect } from "@react-navigation/native";
+import { useRouter } from "expo-router";
+import { StatusBar } from "expo-status-bar";
 import React from "react";
-import { ScrollView, StatusBar, Text, View } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { ScrollView, Text, View } from "react-native";
 import { useSelector } from "react-redux";
 
 import Header from "@/components/HomeScreen/Header";
-import MealCard from "@/components/Meals/MealCard";
+import { DEFAULT_CALORIE_GOAL } from "@/constants/profileDefaults";
 import type { RootState } from "@/store";
 
 export default function Home() {
-  const { profile } = useProfile();
-  const calorieGoal = profile?.calorie_goal ?? 2000;
+  const router = useRouter();
+  const { profile, loading: profileLoading, refetch } = useProfile();
+  const calorieGoal = profile?.calorie_goal ?? DEFAULT_CALORIE_GOAL;
 
   const meals = useSelector(
     (state: RootState) => state.meals.meals
   );
-
-  const macroTotals = meals.reduce(
-    (acc, meal) => ({
-      protein: acc.protein + (meal.protein ?? 0),
-      carbs: acc.carbs + (meal.carbs ?? 0),
-      fats: acc.fats + (meal.fats ?? 0),
-    }),
-    { protein: 0, carbs: 0, fats: 0 }
-  );
-
-  const loading =
-    useSelector((state: RootState) => state.meals.loading) ?? false;
-
 
   const totalCalories = meals.reduce(
     (sum, meal) => sum + meal.calories,
     0
   );
 
-  const previewMeals = meals.slice(0, 4);
+  const remainingCalories = Math.max(calorieGoal - totalCalories, 0);
+
+  useFocusEffect(
+    React.useCallback(() => {
+      refetch();
+    }, [refetch])
+  );
 
   return (
-    <SafeAreaView className="flex-1">
+    <View className="flex-1 bg-[#F4F8F5]">
       <ScrollView
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{ paddingBottom: 100 }}
       >
-        <StatusBar backgroundColor="#0df2aaff" />
+        <StatusBar style="light" />
 
-        <Header meals={meals} goal={calorieGoal} />
+        <Header
+          meals={meals}
+          goal={calorieGoal}
+          profile={profile}
+          profileLoading={profileLoading}
+        />
 
-        <Text className="px-4 text-[20px] text-gray-700 font-semibold mt-6">
-          Today's Meal
-        </Text>
+        <View className="mt-4 px-4">
+          <View className="flex-row flex-wrap justify-between">
+            <View className="mb-3 w-[48.5%]">
+              <QuickActionCard
+                icon="add-circle-outline"
+                title="Add Meal"
+                subtitle="Log breakfast, lunch, or snacks"
+                iconColor="#0F9F67"
+                iconBackgroundColor="#DCFCE7"
+                onPress={() => router.push("/add-meal")}
+              />
+            </View>
+            <View className="mb-3 w-[48.5%]">
+              <QuickActionCard
+                icon="pie-chart-outline"
+                title="Macros"
+                subtitle="Check your protein, carbs, and fats"
+                iconColor="#2563EB"
+                iconBackgroundColor="#DBEAFE"
+                onPress={() => router.push("/(tabs)/macros")}
+              />
+            </View>
+            <View className="w-full">
+              <QuickActionCard
+                icon="restaurant-outline"
+                title="Meals"
+                subtitle="Open today's full meal list"
+                iconColor="#C2410C"
+                iconBackgroundColor="#FFEDD5"
+                onPress={() => router.push("/(tabs)/meals")}
+              />
+            </View>
+          </View>
+        </View>
 
-        <View className="mt-2 px-4">
-          {loading && (
-            <Text className="text-center mt-4">
-              Loading...
+        <View className="mt-5 px-4">
+          <View>
+            <Text className="text-[12px] font-semibold uppercase tracking-[1.5px] text-emerald-700">
+              AI Kitchen
             </Text>
-          )}
-
-          {!loading && meals.length === 0 && (
-            <Text className="text-center text-gray-400 mt-4">
-              No meals logged for today
+            <Text className="mt-1 text-[24px] font-black text-slate-900">
+              Recipe Generator
             </Text>
-          )}
+            <Text className="mt-1 text-sm text-slate-500">
+              Send your ingredients to Cooksy and get back a structured recipe you can actually use.
+            </Text>
+          </View>
+        </View>
 
-          {previewMeals.map((meal) => (
-            <MealCard
-              key={meal.id}
-              meal={meal.meal}
-              calories={meal.calories}
-              time={meal.time}
-            />
-          ))}
+        <View className="mt-3 px-4">
+          <RecipeGeneratorCard
+            calorieGoal={calorieGoal}
+            remainingCalories={remainingCalories}
+            meals={meals}
+          />
         </View>
       </ScrollView>
-    </SafeAreaView>
+    </View>
   );
 }

@@ -1,14 +1,21 @@
-import { Text, View, ScrollView, TouchableOpacity } from 'react-native'
-import React, { useState, useMemo } from 'react'
-import { SafeAreaView } from 'react-native-safe-area-context'
-import MacrosByRange from '@/components/Macros/macrosByRange'
 import MacroDetailsCard from '@/components/Macros/MacroDetailCard'
+import MacrosByRange from '@/components/Macros/macrosByRange'
 import MacroSummaryCard from '@/components/Macros/MacroSummaryCard'
+import { DEFAULT_CALORIE_GOAL } from "@/constants/profileDefaults"
+import { useProfile } from '@/hooks/useProfile'
+import { makeSelectMacrosByRange } from "@/store/selectors/mealsSelectors"
+import { getLocalDateString, getRangeForFilter } from "@/utils/DateRangeHelper"
+import {
+    getInclusiveDayCount,
+    getMacroCalorieBreakdown,
+    getMacroTargets,
+} from "@/utils/macroTargets"
+import Ionicons from "@expo/vector-icons/Ionicons"
+import React, { useMemo, useState } from 'react'
+import { ScrollView, Text, TouchableOpacity, View } from 'react-native'
+import DateTimePickerModal from "react-native-modal-datetime-picker"
+import { SafeAreaView } from 'react-native-safe-area-context'
 import { useSelector } from 'react-redux'
-import { makeSelectMacrosByRange } from "@/store/selectors/mealsSelectors";
-import { getLocalDateString } from "@/utils/DateRangeHelper";
-import DateTimePickerModal from "react-native-modal-datetime-picker";
-import Ionicons from "@expo/vector-icons/Ionicons";
 
 const formatDateLabel = (date: string) => {
   const today = getLocalDateString();
@@ -23,6 +30,7 @@ const formatDateLabel = (date: string) => {
 
 export default function Macros() {
   const [activeFilter, setActiveFilter] = useState<"Today" | "Week" | "Month">("Today");
+  const { profile } = useProfile();
 
   const [selectedDate, setSelectedDate] = useState(getLocalDateString());
 
@@ -35,29 +43,76 @@ export default function Macros() {
 
 
   const { calories, protein, carbs, fats } = useSelector(macrosSelector);
+  const calorieGoal = profile?.calorie_goal ?? DEFAULT_CALORIE_GOAL;
+  const activeRange = useMemo(
+    () => getRangeForFilter(activeFilter, selectedDate),
+    [activeFilter, selectedDate]
+  );
+  const targetDays = useMemo(
+    () => getInclusiveDayCount(activeRange.start, activeRange.end),
+    [activeRange.end, activeRange.start]
+  );
+  const macroTargets = useMemo(
+    () => getMacroTargets(
+      calorieGoal, 
+      targetDays,
+      profile?.protein_goal,
+      profile?.carbs_goal,
+      profile?.fats_goal
+    ),
+    [calorieGoal, targetDays, profile]
+  );
+  const macroCalorieBreakdown = useMemo(
+    () => getMacroCalorieBreakdown(protein, carbs, fats),
+    [protein, carbs, fats]
+  );
+  const safeMacroCalories = macroCalorieBreakdown.totalMacroCalories || 1;
 
   const summarySegments = [
-    { label: "Protein", value: protein, color: "#3B82F6" },
-    { label: "Carbs", value: carbs, color: "#F59E0B" },
-    { label: "Fats", value: fats, color: "#EC4899" },
+    {
+      label: "Protein",
+      detail: `${protein}g / ${macroTargets.protein}g`,
+      percent: Math.round((macroCalorieBreakdown.proteinCalories / safeMacroCalories) * 100),
+      color: "#3B82F6",
+    },
+    {
+      label: "Carbs",
+      detail: `${carbs}g / ${macroTargets.carbs}g`,
+      percent: Math.round((macroCalorieBreakdown.carbsCalories / safeMacroCalories) * 100),
+      color: "#F59E0B",
+    },
+    {
+      label: "Fats",
+      detail: `${fats}g / ${macroTargets.fats}g`,
+      percent: Math.round((macroCalorieBreakdown.fatsCalories / safeMacroCalories) * 100),
+      color: "#EC4899",
+    },
   ];
+  const breakdownTitle =
+    activeFilter === "Today" ? "Daily Breakdown" : `${activeFilter} Breakdown`;
 
   return (
-    <SafeAreaView className='flex-1'>
+    <SafeAreaView className='flex-1 bg-[#F4F8F5]'>
       <ScrollView
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{ paddingBottom: 100 }}
       > 
-        <View className='p-4'>
-          <Text className='text-[20px] font-bold text-gray-700'>Macros Tracking</Text>
-          <Text className='text-[14px] text-gray-600'>Monitor your macro nutrients</Text>
+        <View className='px-4 pt-2'>
+          <Text className='text-[12px] font-semibold uppercase tracking-[1.5px] text-emerald-700'>
+            Nutrition Insights
+          </Text>
+          <Text className='mt-1 text-[28px] font-black text-slate-900'>Macros</Text>
+          <Text className='mt-2 text-sm leading-6 text-slate-500'>
+            Monitor protein, carbs, fats, and calories with the same daily dashboard feel.
+          </Text>
         </View>
-        <View className="flex-row items-center justify-between px-4  mt-2 mb-4">
-          <Text className="text-[16px] font-medium text-gray-700">
+
+        <View className="mb-4 mt-4 flex-row items-center justify-between px-4">
+          <Text className="text-[16px] font-semibold text-slate-700">
             {formatDateLabel(selectedDate)}
           </Text>
           <TouchableOpacity onPress={() => setDatePickerVisible(true)}
-            className='px-4'
+            className='h-11 w-11 items-center justify-center rounded-full border border-emerald-100 bg-white'
             >
             <Ionicons
               name="calendar-outline"
@@ -73,35 +128,38 @@ export default function Macros() {
         />
         </View>
         
-        <View className='p-2'>
-          <Text className='text-[18px] font-semibold text-gray-600 ml-2'>Macro Details</Text>
+        <View className='px-4 pb-2 pt-1'>
+          <Text className='text-[12px] font-semibold uppercase tracking-[1.5px] text-emerald-700'>
+            Breakdown
+          </Text>
+          <Text className='mt-1 text-[22px] font-black text-slate-900'>Macro Details</Text>
         </View>
 
       
         <View className='px-4'>
           <MacroSummaryCard
-          title="Daily Breakdown"
+          title={breakdownTitle}
           current={calories}
-          goal={2000}
+          goal={macroTargets.calories}
           segments={summarySegments}
         />
           <MacroDetailsCard
             label="Protein"
             color="#3B82F6"
             current={protein}
-            goal={150}
+            goal={macroTargets.protein}
           />
           <MacroDetailsCard
             label="Carbohydrates"
             color="#f6b53bff"
             current={carbs}
-            goal={100}
+            goal={macroTargets.carbs}
           />
           <MacroDetailsCard
             label="Fats"
             color="#f63b6dff"
             current={fats}
-            goal={100}
+            goal={macroTargets.fats}
           />
           <DateTimePickerModal
             isVisible={isDatePickerVisible}

@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { Text, View } from "react-native";
 import Svg, { Circle } from "react-native-svg";
 
 type MacroDetailCardProps = {
@@ -20,11 +20,11 @@ export default function MacroDetailCard({
     const strokeWidth = 6;
     const radius = (size - strokeWidth) / 2;
     const circumference = 2 * Math.PI * radius;
-    const progress = Math.min(current / goal, 1);
-
-    const safeCurrent = Math.min(current, goal);
-    const percentage = Math.round((safeCurrent / goal) * 100);
-    const remaining = Math.max(goal - current, 0);
+    const safeGoal = goal > 0 ? goal : 1;
+    const progress = goal > 0 ? Math.min(current / safeGoal, 1) : 0;
+    const remaining = goal > 0 ? Math.max(goal - current, 0) : 0;
+    const overGoal = goal > 0 ? Math.max(current - goal, 0) : current;
+    const displayPercentage = goal > 0 ? Math.round((current / safeGoal) * 100) : 0;
 
     const strokeDashoffset =
         circumference - circumference * progress;
@@ -34,7 +34,7 @@ export default function MacroDetailCard({
             <View className="flex-row justify-between items-center p-2">
                 <Text className="text-lg font-semibold p-2">{label}</Text>
                 <Text className="font-semibold" style={{ color }}>
-                    {Math.round((current / goal) * 100)}%
+                    {displayPercentage}%
                 </Text>
             </View>
 
@@ -67,7 +67,7 @@ export default function MacroDetailCard({
                 <View className="flex-1 ml-4">
                     <View className="flex-row justify-between">
                         <Text className="text-gray-500">Current</Text>
-                        <Text className="font-semibold text-lightblue">{safeCurrent}g</Text>
+                        <Text className="font-semibold text-lightblue">{current}g</Text>
                     </View>
 
                     <View className="flex-row justify-between mt-2">
@@ -76,9 +76,11 @@ export default function MacroDetailCard({
                     </View>
 
                     <View className="flex-row justify-between mt-2">
-                        <Text className="text-gray-500">Remaining</Text>
-                        <Text className="font-semibold text-red-500">
-                            {remaining}g
+                        <Text className="text-gray-500">
+                            {overGoal > 0 ? "Over Goal" : "Remaining"}
+                        </Text>
+                        <Text className={`font-semibold ${overGoal > 0 ? "text-amber-600" : "text-red-500"}`}>
+                            {overGoal > 0 ? `${overGoal}g` : `${remaining}g`}
                         </Text>
                     </View>
                 </View>

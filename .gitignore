@@ -11,6 +11,12 @@ expo-env.d.ts
 
 # Native
 .kotlin/
+.gradle/
+.gradle-user/
+android/.gradle/
+android/build/
+android/app/build/
+android/app/.cxx/
 *.orig.*
 *.jks
 *.p8
@@ -20,6 +26,12 @@ expo-env.d.ts
 
 # Metro
 .metro-health-check*
+
+# Firebase
+google-services.json
+GoogleService-Info.plist
+firebase-adminsdk-*.json
+ServiceKey.json
 
 # debug
 npm-debug.*

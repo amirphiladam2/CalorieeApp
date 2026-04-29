@@ -16,14 +16,14 @@ export default function TabLayout() {
     if (user) {
       dispatch(fetchTodayMeals(user.id));
     }
-  }, [user]);
+  }, [dispatch, user]);
 
   // Redirect must be inside useEffect
   useEffect(() => {
     if (!loading && !session) {
       router.replace("/(auth)/AuthScreen");
     }
-  }, [loading, session]);
+  }, [loading, router, session]);
 
   // While auth is loading OR session is null (waiting for redirect), show spinner
   if (loading || !session) {

@@ -4,5 +4,9 @@
     "source.organizeImports": "explicit",
     "source.sortMembers": "explicit"
   },
-  "DockerRun.DisableDockerrc": true
+  "DockerRun.DisableDockerrc": true,
+  "deno.enable": true,
+  "deno.enablePaths": [
+    "supabase/functions"
+  ]
 }

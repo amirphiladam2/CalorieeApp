@@ -2,36 +2,47 @@
   "expo": {
     "name": "Caloriee",
     "slug": "caloriee",
-    "version": "1.0.0",
-    "orientation": "portrait",
+    "version": "1.0.2",
+    "orientation": "default",
     "icon": "./assets/images/icon.png",
-    "scheme": "aloriee",
+    "scheme": "caloriee",
     "userInterfaceStyle": "automatic",
-    "newArchEnabled": true,
     "ios": {
       "supportsTablet": true
     },
     "android": {
+      "versionCode": 3,
       "adaptiveIcon": {
-        "backgroundColor": "#E6F4FE",
-        "foregroundImage": "./assets/images/android-icon-background.png",
-        "backgroundImage": "./assets/images/android-icon-background.png",
+        "backgroundColor": "#02b547",
+        "foregroundImage": "./assets/images/android-icon-foreground.png",
         "monochromeImage": "./assets/images/android-icon-monochrome.png"
       },
-      "edgeToEdgeEnabled": true,
-      "predictiveBackGestureEnabled": false
+      "predictiveBackGestureEnabled": false,
+      "permissions": [
+        "android.permission.SCHEDULE_EXACT_ALARM",
+        "android.permission.VIBRATE",
+        "android.permission.RECEIVE_BOOT_COMPLETED"
+      ],
+      "package": "com.caloriee.com",
+      "googleServicesFile": "./google-services.json"
     },
     "web": {
       "bundler": "metro",
       "output": "static",
-      "favicon": "./assets/images/favicon.png"
+      "favicon": "./assets/images/icon.png"
     },
     "plugins": [
       "expo-router",
       [
+        "expo-dev-client",
+        {
+          "launchMode": "most-recent"
+        }
+      ],
+      [
         "expo-splash-screen",
         {
-          "image": "./assets/images/splash-icon.png",
+          "image": "./assets/images/icon.png",
           "imageWidth": 200,
           "resizeMode": "contain",
           "backgroundColor": "#ffffff",
@@ -43,16 +54,35 @@
       [
         "expo-image-picker",
         {
-          "photosPermission": "The app accesses your photos to let you upload profile pictures."
+          "photosPermission": "The app accesses your photos to let you upload profile pictures.",
+          "cameraPermission": false,
+          "microphonePermission": false
+        }
+      ],
+      [
+        "expo-notifications",
+        {
+          "icon": "./assets/images/android-icon-monochrome.png",
+          "color": "#0F9F67",
+          "defaultChannel": "default"
         }
       ],
       "expo-web-browser",
       "expo-font",
-      "expo-secure-store"
+      "expo-secure-store",
+      "expo-image",
+      "@react-native-community/datetimepicker"
     ],
     "experiments": {
       "typedRoutes": true,
       "reactCompiler": true
-    }
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "1758663c-9249-40ab-91a6-eb6ae1b31ecd"
+      }
+    },
+    "owner": "amirpeter60"
   }
 }

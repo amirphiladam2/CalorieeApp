@@ -1,0 +1,2 @@
+export const DEFAULT_CALORIE_GOAL = 2000;
+export const DEFAULT_WEIGHT_GOAL = 70;

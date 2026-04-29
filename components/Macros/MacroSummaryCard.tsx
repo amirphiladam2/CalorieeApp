@@ -3,7 +3,8 @@ import React from "react";
 
 type MacroSegment = {
     label: string;
-    value: number;
+    detail: string;
+    percent: number;
     color: string;
 };
 
@@ -21,7 +22,7 @@ export default function MacroSummaryCard({
 }: MacroSummaryProps) {
 
     return (
-        <View className="h-[210px] w-full bg-white self-center rounded-[15px] shadow-md mt-4">
+        <View className="w-full self-center rounded-[15px] bg-white shadow-md mt-4">
 
             {/* Header */}
             <View className="p-4">
@@ -42,31 +43,30 @@ export default function MacroSummaryCard({
 
             {/* Macro segments */}
             <View className="mt-6 px-4">
-                {segments.map((seg) => {
-                    const percent = current
-                        ? Math.round((seg.value / current) * 100)
-                        : 0;
-
-                    return (
-                        <View
-                            key={seg.label}
-                            className="flex-row items-center justify-between mb-3"
-                        >
-                            <View className="flex-row items-center">
-                                <View
-                                    style={{ backgroundColor: seg.color }}
-                                    className="w-4 h-4 rounded-full"
-                                />
-                                <Text className="ml-3 text-gray-600">
+                {segments.map((seg) => (
+                    <View
+                        key={seg.label}
+                        className="mb-3 flex-row items-center justify-between"
+                    >
+                        <View className="flex-row items-center">
+                            <View
+                                style={{ backgroundColor: seg.color }}
+                                className="h-4 w-4 rounded-full"
+                            />
+                            <View className="ml-3">
+                                <Text className="text-gray-600">
                                     {seg.label}
                                 </Text>
+                                <Text className="text-xs text-gray-500">
+                                    {seg.detail}
+                                </Text>
                             </View>
-                               <Text className="font-semibold text-gray-600">
-                                {percent}%
-                            </Text>
                         </View>
-                    );
-                })}
+                        <Text className="font-semibold text-gray-600">
+                            {seg.percent}%
+                        </Text>
+                    </View>
+                ))}
             </View>
 
         </View>

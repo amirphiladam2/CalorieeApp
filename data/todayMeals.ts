@@ -1,5 +1,12 @@
 export type MealType = "Breakfast" | "Lunch" | "Snacks" | "Dinner"|"Shake";
 
+export type MealRecipeMetadata = {
+  recipe_title?: string | null;
+  recipe_summary?: string | null;
+  recipe_source_prompt?: string | null;
+  recipe_servings?: number | null;
+};
+
 export type Meal = {
   id: string;
   meal: MealType;
@@ -10,7 +17,7 @@ export type Meal = {
   protein?:number;
   carbs?:number;
   fats?:number;
-};
+} & MealRecipeMetadata;
 
 export const todayMeals: Meal[] = [
   {

@@ -36,7 +36,7 @@ export const uploadAvatar = async (
     .from("avatars")
     .getPublicUrl(filePath);
 
-  return data.publicUrl;
+  return `${data.publicUrl}?updated=${Date.now()}`;
 };
 
 export const updateProfileAvatar = async (
@@ -58,6 +58,12 @@ export const updateProfile = async (
     username?: string;
     calorie_goal?: number;
     weight_goal?: number;
+    protein_goal?: number | null;
+    carbs_goal?: number | null;
+    fats_goal?: number | null;
+    expo_push_token?: string | null;
+    push_notifications_enabled?: boolean;
+    meal_reminders_enabled?: boolean;
   }
 ): Promise<void> => {
   const { error } = await supabase

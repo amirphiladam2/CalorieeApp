@@ -1,10 +1,12 @@
-import type { MealType } from "@/data/todayMeals";
+import type { MealRecipeMetadata, MealType } from "@/data/todayMeals";
 import { supabase } from "@/lib/supabase";
-import type { AppDispatch } from ".";
-import { addMeal as addMealAction,
-   deleteMeal as deleteMealAction, 
-setMeals, updateMeal as updateMealAction } from "./mealsSlice";
 import { getLocalDateString } from "@/utils/DateRangeHelper";
+import type { AppDispatch } from ".";
+import {
+    addMeal as addMealAction,
+    deleteMeal as deleteMealAction,
+    setMeals, updateMeal as updateMealAction
+} from "./mealsSlice";
 
 export const fetchTodayMeals =(userId: string) => async (dispatch: AppDispatch) => {
     const today=getLocalDateString();
@@ -30,8 +32,8 @@ export const createMeal =
       protein?:number;
       carbs?:number;
       fats?:number;
-
-    }
+    },
+    recipeMetadata?: MealRecipeMetadata
   ) =>async (dispatch: AppDispatch) => {
 
 
@@ -46,6 +48,10 @@ export const createMeal =
           protein:macros?.protein??null,
           carbs:macros?.carbs??null,
           fats:macros?.fats??null,
+          recipe_title: recipeMetadata?.recipe_title ?? null,
+          recipe_summary: recipeMetadata?.recipe_summary ?? null,
+          recipe_source_prompt: recipeMetadata?.recipe_source_prompt ?? null,
+          recipe_servings: recipeMetadata?.recipe_servings ?? null,
         })
         .select()
         .single();
@@ -65,6 +71,8 @@ export const updateMeal =
       protein?: number;
       carbs?: number;
       fats?: number;
+      recipe_title?: string | null;
+      recipe_summary?: string | null;
     }
   ) =>
   async (dispatch: AppDispatch) => {
@@ -77,6 +85,8 @@ export const updateMeal =
         protein: updates.protein ?? null,
         carbs: updates.carbs ?? null,
         fats: updates.fats ?? null,
+        recipe_title: updates.recipe_title !== undefined ? updates.recipe_title : undefined,
+        recipe_summary: updates.recipe_summary !== undefined ? updates.recipe_summary : undefined,
       })
       .eq("id", mealId);
 

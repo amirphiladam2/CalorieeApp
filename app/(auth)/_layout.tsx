@@ -11,7 +11,7 @@ export default function AuthLayout() {
     if (!loading && session) {
       router.replace("/(tabs)/home");
     }
-  }, [loading, session]);
+  }, [loading, router, session]);
 
   if (loading) {
     return (

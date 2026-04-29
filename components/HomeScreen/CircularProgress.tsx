@@ -1,7 +1,6 @@
-import { StyleSheet, Text, View } from 'react-native'
-import Svg, { Circle } from "react-native-svg";
-import { Animated } from "react-native";
 import React, { useEffect, useRef } from "react";
+import { Animated, Text, View } from "react-native";
+import Svg, { Circle } from "react-native-svg";
 
 export type CircularProgressProps = {
     progress: number;          // 0–100
@@ -26,11 +25,11 @@ export default function CircularProgress({ progress,
 
     useEffect(() => {
         Animated.timing(animatedProgress, {
-            toValue: progress,
+            toValue: safeProgress,
             duration: 800,
             useNativeDriver: false,
         }).start();
-    }, [progress]);
+    }, [animatedProgress, safeProgress]);
 
     const animatedDashoffset = animatedProgress.interpolate({
         inputRange: [0, 100],
